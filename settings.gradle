@@ -2,4 +2,5 @@ rootProject.name = 'icon-sdk'
 include 'library'
 include 'samples'
 include 'quickstart'
+include 'test-java6'
 
