@@ -36,7 +36,7 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
-import java.nio.charset.StandardCharsets;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.NoSuchAlgorithmException;
@@ -144,7 +144,7 @@ public class KeyWalletTest {
         String message = "Hello World!";
         KeyWallet wallet = KeyWallet.create();
 
-        byte[] hash = new SHA3.Digest256().digest(message.getBytes(StandardCharsets.UTF_8));
+        byte[] hash = new SHA3.Digest256().digest(message.getBytes(Charset.forName("UTF-8")));
         byte[] signature = wallet.sign(hash);
 
         byte[] pub = wallet.getPublicKey().toByteArray();

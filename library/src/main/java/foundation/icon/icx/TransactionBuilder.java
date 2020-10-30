@@ -25,7 +25,7 @@ import foundation.icon.icx.transport.jsonrpc.RpcObject;
 import foundation.icon.icx.transport.jsonrpc.RpcValue;
 
 import java.math.BigInteger;
-import java.nio.charset.StandardCharsets;
+import java.nio.charset.Charset;
 
 /**
  * Builder for the transaction to send<br>
@@ -272,7 +272,7 @@ public final class TransactionBuilder {
         private MessageBuilder(TransactionData transactionData, String message) {
             this.transactionData = transactionData;
             this.transactionData.dataType = "message";
-            this.transactionData.data = new RpcValue(message.getBytes(StandardCharsets.UTF_8));
+            this.transactionData.data = new RpcValue(message.getBytes(Charset.forName("UTF-8")));
         }
 
         /**

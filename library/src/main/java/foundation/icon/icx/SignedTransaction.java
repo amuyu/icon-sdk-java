@@ -27,7 +27,7 @@ import org.bouncycastle.jcajce.provider.digest.SHA3;
 import org.bouncycastle.util.encoders.Base64;
 
 import java.math.BigInteger;
-import java.nio.charset.StandardCharsets;
+import java.nio.charset.Charset;
 import java.util.TreeSet;
 
 /**
@@ -122,7 +122,7 @@ public class SignedTransaction {
      * @return hash
      */
     byte[] generateMessage(String data) {
-        return new SHA3.Digest256().digest(data.getBytes(StandardCharsets.UTF_8));
+        return new SHA3.Digest256().digest(data.getBytes(Charset.forName("UTF-8")));
     }
 
     /**

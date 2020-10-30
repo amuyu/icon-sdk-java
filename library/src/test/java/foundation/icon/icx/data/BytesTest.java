@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
-import java.nio.charset.StandardCharsets;
+import java.nio.charset.Charset;
 import java.security.SecureRandom;
 
 
@@ -32,7 +32,7 @@ class BytesTest {
         Assertions.assertArrayEquals(secret, new Bytes(secret).toByteArray());
 
         String stringValue = "string value";
-        byte[] b = stringValue.getBytes(StandardCharsets.UTF_8);
+        byte[] b = stringValue.getBytes(Charset.forName("UTF-8"));
         Assertions.assertArrayEquals(b, new Bytes(b).toByteArray());
 
     }
@@ -57,7 +57,7 @@ class BytesTest {
         String stringValue = "string value";
         Assertions.assertThrows(IllegalArgumentException.class, () -> new Bytes(stringValue));
 
-        byte[] b = stringValue.getBytes(StandardCharsets.UTF_8);
+        byte[] b = stringValue.getBytes(Charset.forName("UTF-8"));
         Assertions.assertThrows(IllegalArgumentException.class, () -> Bytes.toBytesPadded(b, b.length - 1));
 
         String oddHex = "4d2";
