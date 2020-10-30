@@ -27,6 +27,9 @@ dependencies {
     implementation "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
     implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
 
+    implementation 'org.apache.httpcomponents:httpcore:4.4.1'
+    implementation 'org.apache.httpcomponents:httpclient:4.5'
+
     testImplementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
