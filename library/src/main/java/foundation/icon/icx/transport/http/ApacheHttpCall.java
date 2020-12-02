@@ -12,7 +12,13 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.config.Registry;
+import org.apache.http.config.RegistryBuilder;
+import org.apache.http.conn.socket.ConnectionSocketFactory;
+import org.apache.http.conn.socket.PlainConnectionSocketFactory;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.conn.BasicHttpClientConnectionManager;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
@@ -24,7 +30,7 @@ public class ApacheHttpCall<T> implements Request<T> {
     private final RpcConverter<T> converter;
 
     public ApacheHttpCall(HttpPost httpPost, RpcConverter<T> converter) {
-        this.httpClient = HttpClients.createDefault();
+        this.httpClient = createHttpClient();
         this.httpPost = httpPost;
         this.converter = converter;
     }
@@ -86,5 +92,27 @@ public class ApacheHttpCall<T> implements Request<T> {
         SimpleModule module = new SimpleModule();
         module.addDeserializer(RpcItem.class, new RpcItemDeserializer());
         return module;
+    }
+
+    public HttpClient createHttpClient() {
+        SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(
+                new TLSSocketConnectionFactory(),
+//                new String[] { "TLSv1", "TLSv1.1", "TLSv1.2" },
+                new String[] { "TLSv1.2" },
+                null,
+                SSLConnectionSocketFactory.getDefaultHostnameVerifier());
+
+        Registry<ConnectionSocketFactory> socketFactoryRegistry =
+                RegistryBuilder.<ConnectionSocketFactory> create()
+                        .register("https", sslsf)
+                        .register("http", new PlainConnectionSocketFactory())
+                        .build();
+        BasicHttpClientConnectionManager connectionManager =
+                new BasicHttpClientConnectionManager(socketFactoryRegistry);
+
+        return HttpClients.custom()
+                .setSSLSocketFactory(sslsf)
+                .setConnectionManager(connectionManager)
+                .build();
     }
 }
