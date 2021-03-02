@@ -12,7 +12,7 @@ repositories {
 }
 
 ext {
-    bouncycastleVersion = '1.60'
+    bouncycastleVersion = '1.53'
     jacksonVersion = '2.7.9'
     okhttpVersion = '3.11.0'
 
