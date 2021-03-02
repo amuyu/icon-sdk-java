@@ -15,6 +15,7 @@ import java.math.BigInteger;
 public class SendIcxTransaction {
 
     public final String URL = "http://host.docker.internal:9000/api/v3";
+//    public final String URL = "http://localhost:9000/api/v3";
     public final String PRIVATE_KEY_STRING =
             "592eb276d534e2c41a2d9356c0ab262dc233d87e4dd71ce705ec130a8d27ff0c";
 

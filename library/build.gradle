@@ -19,6 +19,9 @@ ext {
     junitVersion = '5.2.0'
     mockitoVersion = '2.19.0'
 
+    httpclientVersion = '4.3.6'
+    httpcoreVersion = '4.3.3'
+
     mavenCentralSync = true
 }
 
@@ -27,8 +30,8 @@ dependencies {
     implementation "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
     implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
 
-    implementation 'org.apache.httpcomponents:httpcore:4.4.1'
-    implementation 'org.apache.httpcomponents:httpclient:4.5'
+    implementation "org.apache.httpcomponents:httpcore:$httpcoreVersion"
+    implementation "org.apache.httpcomponents:httpclient:$httpclientVersion"
 
     testImplementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
     testImplementation "org.mockito:mockito-core:$mockitoVersion"

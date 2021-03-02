@@ -100,7 +100,7 @@ public class ApacheHttpCall<T> implements Request<T> {
 //                new String[] { "TLSv1", "TLSv1.1", "TLSv1.2" },
                 new String[] { "TLSv1.2" },
                 null,
-                SSLConnectionSocketFactory.getDefaultHostnameVerifier());
+        SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
 
         Registry<ConnectionSocketFactory> socketFactoryRegistry =
                 RegistryBuilder.<ConnectionSocketFactory> create()
